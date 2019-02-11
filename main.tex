@@ -1,0 +1,58 @@
+\documentclass[oneside, a4paper,11pt,openright, english]{memoir}
+\usepackage{subfiles}
+\input{preamble.tex}
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{-15pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+\allowdisplaybreaks[2]
+
+
+\frontmatter
+\input{formalia/forside.tex} 
+\begin{center}
+\thispagestyle{empty}
+This page is intentionally left blank.
+\vfill
+\begin{flushleft}
+{\small
+\strut\vfill % push the content to the bottom of the page
+\noindent Copyright \copyright{} Aalborg University 2018\par
+\vspace{0.2cm}
+\noindent 
+}
+\clearpage
+\end{flushleft}
+\end{center}
+\pagebreak
+
+\include{formalia/Titlepage}
+\include{formalia/preface}
+
+
+\pagestyle{plain}
+\pdfbookmark[0]{Table of contents}{Contents}	
+\tableofcontents*\label{toc}
+
+%\listoftodos[Todo List] \pagebreak
+
+\mainmatter
+
+%% Chapter 1
+\subfile{formalia/ProblemStatement.tex}
+
+
+%% Chapter ?
+\subfile{formalia/Conclusion.tex}
+\subfile{formalia/Discussion.tex}
+
+\printbibliography[heading=bibintoc]
+
+\appendix
+
+
+
+\end{document}

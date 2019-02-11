@@ -1,0 +1,648 @@
+\RequirePackage{etex}
+
+\usepackage[T1]{fontenc}
+% Hjælper med orddeling ved æ, ø og å. Sætter fontene til at være ps-fonte, i stedet for bmp	
+\usepackage[utf8]{inputenc} 
+
+%	¤¤ Blank pages ¤¤ %
+\usepackage{afterpage} % Blank page by \afterpage{\blankpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+
+\usepackage{listings}
+\usepackage{lastpage}
+
+
+\usepackage[footnote,draft,danish,silent,nomargin]{fixme}
+%	¤¤ Usepackages ¤¤ %
+%\usepackage[danish]{babel}
+% Dansk sporg, f.eks. tabel, figur og kapitel
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{array, booktabs}
+\usepackage{framed}
+
+%Til horisontale tabeller
+\usepackage{lscape}
+\usepackage{rotating}
+
+\usepackage{arydshln} %Dash line 
+
+\usepackage[framemethod=tikz]{mdframed}
+\pretolerance=2500 										
+% Gør det muligt at justere afstanden mellem ord (højt tal, mindre orddeling og mere space mellem ord)
+\usepackage{amssymb, amsthm, mathtools, bm}
+\usepackage{pdfpages}										% Gør det muligt at inkludere pdf-dokumenter med kommandoen \includepdf[pages=]{fil.pdf}	
+\usepackage{varioref}
+\usepackage[hidelinks]{hyperref}			 	% Giver mulighed for at ens referencer bliver til klikbare hyperlinks. .. [colorlinks]{..}
+
+\usepackage{nameref, cleveref}
+
+
+%\usepackage[demo]{graphicx}
+\usepackage{subfig}
+
+%\usepackage{subcaption}
+
+\usepackage{etoolbox}
+% forskellige pakker til brug når I skriver matematik
+\usepackage{graphicx}
+% % Pakke til ekstern jpeg/png billeder
+
+%% COMMANDS %%
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+\newcommand{\msout}[1]{\text{\sout{\ensuremath{#1}}}}
+\newcommand{\Var}[1]{\,\mathrm{Var}\left[\,#1\,\right]}
+\newcommand{\Cov}[1]{\,\mathrm{Cov}\left[\,#1\,\right]}
+\newcommand{\Corr}[1]{\,\mathrm{Corr}\left(\,#1\,\right)}
+\newcommand{\diff}[2]{\dfrac{d #1}{d #2}}
+\newcommand{\pd}[2]{\dfrac{\partial #1}{\partial #2}}
+
+
+\newcommand{\of}[1]{\left(#1\right)}
+\newcommand{\off}[1]{\left[#1\right]}%laver en command til automatisk store parateser
+\newcommand{\Hy}{\mathcal{H}} %Laver fancy H til hypotese
+\newcommand{\m}{\cdot}
+
+\newcommand{\VaR}{\mathrm{VaR}}
+
+\newcommand{\Nd}[1]{\mathcal{N}\!\left(#1\right)}
+\newcommand{\Nddim}[2][n]{\mathcal{N}_#1\!\left(#2\right)}
+\newcommand{\wn}[1]{\mathrm{wn}\!\left(#1\right)}
+
+\renewcommand{\hat}[1]{\widehat{#1}} %stor hat
+\renewcommand{\bar}[1]{\overbar{#1}} %stor bar
+\renewcommand{\tilde}[1]{\widetilde{#1}} %stor tilde
+
+\newcommand{\Norm}[1]{\lVert#1\rVert}
+\newcommand{\E}[1]{\,\mathbb{E}\left[\,#1\,\right]} 
+%\newcommand{\Prob}[1]{\,\mathrm{P}\left(#1\right)} 
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Lik}{\mathcal{L}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\I}{\mathrm{I}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\iid}{\mathrm{i.i.d.}}
+\newcommand{\SSR}{\,\mathrm{SSR}}
+\newcommand{\MA}{\mathrm{MA}}
+\newcommand{\AR}{\mathrm{AR}}
+\newcommand{\ARMA}{\mathrm{ARMA}}
+\newcommand{\ARIMA}{\mathrm{ARIMA}}
+\newcommand{\ARMAX}{\mathrm{ARMAX}}
+\newcommand{\ARCH}{\mathrm{ARCH}}
+\newcommand{\GARCH}{\mathrm{GARCH}}
+\newcommand{\EGARCH}{\mathrm{EGARCH}}
+\newcommand{\FIGARCH}{\mathrm{FIGARCH}}
+\newcommand{\IGARCH}{\mathrm{IGARCH}}
+\newcommand{\norm}{\mathrm{norm}}
+\newcommand{\std}{\mathrm{std}}
+\newcommand{\sstd}{\mathrm{sstd}}
+\newcommand{\snorm}{\mathrm{snorm}}
+\newcommand{\MSE}{\mathrm{MSE}}
+\newcommand{\VIF}{\operatorname{VIF}}
+\newcommand{\se}[1]{\operatorname{se}\!\left(#1\right)}
+\newcommand{\sd}[1]{\operatorname{sd}\!\left(#1\right)}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dash}{\operatorname{-}}
+\newcommand{\conv}[1]{\overset{#1}{\longrightarrow}}
+%\newcommand{\logicals}[1]{\textcolor{blue!60!black}{\ttfamily{#1}}}
+%\newcommand{\strings}[1]{\textcolor{lightblue}{\ttfamily{#1}}}
+\newcommand{\rfont}[1]{\textcolor{blue}{\ttfamily{#1}}}
+\newcommand{\rfontblack}[1]{\textcolor{black}{\ttfamily{#1}}}
+
+
+% Independence sign
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% Floor brackets til greatest integer function
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+%%-------------------------------------------------%%
+
+
+\usepackage{tabularx,ragged2e}
+\usepackage{lscape}
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\newcolumntype{L}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{b}{>{\Centering\hsize=2.3\hsize}X}
+\newcolumntype{s}{>{\Centering\hsize=.3\hsize}X}
+\newcolumntype{m}{>{\Centering\hsize=.9\hsize}X}
+
+
+\usepackage[normalem]{ulem}
+\usepackage{pdfpages}
+
+
+\definecolor{lightblue}{RGB}{100,100,255}
+\definecolor{string}{RGB}{0,0,255}
+
+%	¤¤ Compiling settings ¤¤ %
+
+\graphicspath{{Images/}{../../../../Images/}{../../Images/}} % Brug denne til at finde directory
+									
+									
+% ¤¤ Marginer ¤¤ %
+\setlrmarginsandblock{3.5cm}{2.5cm}{*}	
+% \setlrmarginsandblock{Indbinding}{Kant}{Ratio}
+\setulmarginsandblock{2.5cm}{3.0cm}{*}	
+% \setulmarginsandblock{Top}{Bund}{Ratio}
+\checkandfixthelayout 									
+% Laver forskellige beregninger og sætter de almindelige længder op til brug ikke memoir pakker
+
+%	¤¤ Afsnitsformatering ¤¤ %
+\setlength{\parindent}{0mm}           	
+% Størrelse af indryk
+\setlength{\parskip}{3mm}          			
+% Afstand mellem afsnit ved brug af double Enter
+\linespread{1,1}											
+% Linie afstand
+
+% ¤¤ Sidehoved ¤¤ %
+%\pagestyle{plain}
+
+% ¤¤ Indholdsfortegnelse ¤¤ %
+\setsecnumdepth{subsection}		 			
+% Dybden af nummerede overkrifter (part/chapter/section/subsection)
+\maxsecnumdepth{subsection}					
+% Ændring af dokumentklassens grænse for nummereringsdybde
+\settocdepth{subsection} 							
+% Dybden af indholdsfomrtegnelsen
+
+\definecolor{gray}{gray}{0.80}					
+% Definerer farven grå
+
+%\definecolor{greentitle}{RGB}{194,193,204}
+\definecolor{AAUBlue}{RGB}{33,26,82}
+% Definerer farven AAUBlue 
+
+% ¤¤ Kapiteludssende ¤¤ %
+\definecolor{numbercolor}{gray}{0.7}
+\newif\ifchapternonum
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+
+\usepackage{titlesec}
+\usepackage{lipsum}
+
+\newcommand{\hsp}{\hspace{10pt}}
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 0.65ex \hfill \kern \z@}
+
+\def\@makechapterhead#1{%
+  %\vspace*{50\p@}%
+  \vspace*{-30\p@}%
+  {\parindent \z@ \centering \reset@font
+        \thickhrulefill\quad
+        \scshape\thechapter
+        \quad \thickhrulefill
+        \par\nobreak
+        \vspace*{10\p@}%
+        \interlinepenalty\@M
+        \hrule
+        %\vspace*{10\p@}%
+        \huge \bfseries #1\par\nobreak
+        %\par
+        \vspace*{10\p@}%
+        \hrule
+    \vskip 8\p@
+    %\vskip 100\p@
+  }}
+  
+  \def\@makeschapterhead#1{%
+  %\vspace*{50\p@}%
+  \vspace*{-30\p@}%
+  {\parindent \z@ \centering \reset@font
+        \scshape
+        \par\nobreak
+        \vspace*{10\p@}%
+        \interlinepenalty\@M
+        \hrule
+        %\vspace*{10\p@}%
+        \huge \bfseries #1\par\nobreak
+        %\par
+        \vspace*{10\p@}%
+        \hrule
+    \vskip 8\p@
+    %\vskip 100\p@
+  }}
+
+% \makeatletter
+% \let\ps@plain\ps@NoHeader
+% \makeatother
+
+% \def\my@foot{\hbox to \textwidth{\rlap{\rule[2ex]{\textwidth}{0.4pt}}\thepage}}
+% \def\ps@mine{\ps@empty% clear all current headings and footings
+%     \let\@oddfoot\my@foot\let\@evenfoot\my@foot
+%     \def\@oddhead{Contents\hfill\includegraphics[height=22pt]{example-image-a}}
+%     \def\@evenhead{\includegraphics[height=22pt]{example-image-a}\hfill Contents}
+% }
+% \def\ps@plain{% this seems to be the "first" page for report.cls
+%     \ps@empty\let\@oddfoot\my@foot\let\@evenfoot\my@foot
+% }
+
+% \usepackage{tocloft}
+% \usepackage[english]{babel}
+% \addto\captionsenglish{% 
+%   \renewcommand{\contentsname}%
+%     {\scshape \centering Table Of Contents}
+% }
+
+\renewcommand{\printtoctitle}{\centering\Huge\bfseries}
+\renewcommand{\contentsname}{\vspace*{-30\p@} \scshape \hrule \vspace*{10\p@} Table of Contents \vspace*{10\p@} \hrule}
+
+\usepackage{titleps}
+
+\newpagestyle{projekt}{
+  \setheadrule{.4pt}% Header rule
+  \setfootrule{.4pt}% Footer rule
+  \sethead[]% odd-left
+          []% odd-center
+          []% odd-right
+          {\scshape Chapter \thechapter: \chaptertitle}% even-left
+          {}% even-center
+          {}% even-right
+  \setfoot[]% odd-left
+          [\thepage]% odd-center
+          []% odd-right
+          {}% even-left
+          {\thepage}% even-center
+          {}% even-right
+}
+
+\newpagestyle{NoHeader}{
+  %\setheadrule{.4pt}% Header rule
+  \setfootrule{.4pt}% Footer rule
+  \sethead[]% odd-left
+          []% odd-center
+          []% odd-right
+          {}% even-left
+          {}% even-center
+          {}% even-right
+  \setfoot[]% odd-left
+          [\thepage]% odd-center
+          []% odd-right
+          {}% even-left
+          {\thepage}% even-center
+          {}% even-right
+}
+  
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+% \renewcommand{\sectionmark}[1]{\markboth{#1}{}} % set the \leftmark
+% \fancyhf{}
+% \fancyhead{}
+% \fancyhead[RO, LE]{\leftmark} % 1. sectionname
+% \fancyfoot[C]{\thepage}
+% \fancypagestyle{plain}{%
+% \fancyhead{}%
+% \renewcommand{\headrulewidth}{0pt}
+% }  
+
+% \usepackage{fancyhdr}% http://ctan.org/pkg/fancyhdr
+% \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+% \pagestyle{fancy}% Change page style to fancy
+% \fancyhf{}% Clear header/footer
+% \fancyhead[L]{\scshape \leftmark} 
+% \fancyhead[R]{}
+% \fancyfoot[L]{Footer}
+% \fancyfoot[R]{\thepage}
+% \renewcommand{\headrulewidth}{1pt}
+% \renewcommand{\footrulewidth}{0.5pt}
+  
+ %\def\chaptermark##1{\markboth{% \ifnum \value{secnumdepth} < -1 \if@mainmatter \chaptername\ \thechapter\ --- % \fi \fi ##1}{}} 
+% \nouppercaseheads
+% \makepagestyle{projekt}
+% \makeoddhead{projekt}{Statistical Modelling and Analysis}{}{Group 5.242}
+% \makeoddfoot{projekt}{}{\thepage}{}
+
+
+%\titleformat{\chapter}[hang]{\fontsize{26pt}{1cm}\bfseries}{\thechapter\hsp\textcolor{AAUBlue}{|}\hsp}{0pt}{}
+%\titlespacing*{\chapter}{0pt}{-30pt}{5pt}
+
+% ¤¤ Section ¤¤ %
+\setsecheadstyle{\LARGE\bfseries}
+\titlespacing*{\section}{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\setsubsecheadstyle{\Large\bfseries}
+\titlespacing*{\subsection}{0pt}{12pt plus 4pt minus 2pt}{-4pt plus 2pt minus 2pt}
+\setsubsubsecheadstyle{\large\bfseries}
+\titlespacing*{\subsubsection}{0pt}{12pt plus 4pt minus 2pt}{-4pt plus 2pt minus 2pt}
+\setparaheadstyle{\large\bfseries}
+\setsubparaheadstyle{\large\bfseries}
+
+% ¤¤ Indholdsfortegnelse ¤¤ %
+%\addto\captionsdanish{
+%	\renewcommand\contentsname{Indholdsfortegnelse}}
+
+% ¤¤ Matematik ¤¤ %
+\renewcommand{\qedsymbol}{$\blacksquare$} % sort QED tegn
+
+\newtheoremstyle{theorem}% name of the style to be used
+  {}% measure of space to leave above the theorem. E.g.: 3pt
+  {}% measure of space to leave below the theorem. E.g.: 3pt
+  {\em}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {\bfseries}% name of head font
+  {}% punctuation between head and body
+  {\newline}% space after theorem head; " " = normal interword space
+  {}% Manually specify head
+  
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}[chapter] % Start sætning \begin{theorem}
+\newtheorem{lemma}[theorem]{Lemma} % Start lemma \begin{lemma}
+\newtheorem{corollary}[theorem]{Corollary} %Star korollar \begin{korollar}
+\newtheorem{prop}[theorem]{Proposition}
+
+
+\newtheoremstyle{proof}% name of the style to be used
+  {-10pt}% measure of space to leave above the theorem. E.g.: 3pt
+  {-5pt}% measure of space to leave below the theorem. E.g.: 3pt
+  {}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {\em}% name of head font
+  {}% punctuation between head and body
+  {}% space after theorem head; " " = normal interword space
+  {}% Manually specify head
+  
+\theoremstyle{proof}
+ 
+\renewenvironment{proof}{{\bfseries \itshape Proof.}}{\qed}
+
+\newtheoremstyle{mydef}% name of the style to be used
+  {}% measure of space to leave above the theorem. E.g.: 3pt
+  {}% measure of space to leave below the theorem. E.g.: 3pt
+  {}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {\bfseries}% name of head font
+  {}% punctuation between head and body
+  {\newline}% space after theorem head; " " = normal interword space
+  {}% Manually specify head
+
+\definecolor{shadecolor}{gray}{0.925}
+\theoremstyle{mydef}
+\newtheorem{mydef}{Definition}[chapter] % Start definition \begin{mydef}
+\surroundwithmdframed[backgroundcolor=shadecolor,linewidth=0.8pt, nobreak=true]{mydef}
+
+
+%\AtEndEnvironment{theorem}{\null\hfill\rule{45pt}{1pt}}%
+%\AtEndEnvironment{proposition}{\null\hfill\rule{45pt}{1pt}}%
+%\AtEndEnvironment{corollary}{\null\hfill\rule{45pt}{1pt}}%
+%\AtEndEnvironment{lemma}{\null\hfill\rule{45pt}{1pt}}%
+
+
+
+%{spaceabove}% measure of space to leave above the theorem. E.g.: 3pt
+%{spacebelow}% measure of space to leave below the theorem. E.g.: 3pt
+%{bodyfont}% name of font to use in the body of the theorem
+%{indent}% measure of space to indent
+%{headfont}% name of head font
+%{headpunctuation}% punctuation between head and body
+%{\n}% space after theorem head; " " = normal interword space
+%{headspec}% Manually specify head
+
+%\newenvironment{foo}[2]{\textbf{#1} \newline}{}
+
+\usepackage{eurosym}
+\usepackage{latexsym}
+
+% ¤¤ Eksempel mm. ¤¤ %
+\newtheorem{example}{Example}[chapter]
+\surroundwithmdframed[outerlinewidth=0pt,
+  innerlinewidth=0pt,
+  middlelinewidth=2.5pt,
+  middlelinecolor=AAUBlue,
+  bottomline=false,topline=false,rightline=false]{example}
+
+
+% ¤¤ Grafteori mm. ¤¤ %
+% \usepackage{tkz-graph}
+% \usepackage{calc}
+% \usetikzlibrary{decorations.markings,arrows.meta}
+% \tikzstyle{vertex}=[circle, draw, inner sep=0pt, minimum size=6pt]
+% \newcommand{\vertex}{\node[vertex]}
+% \newcounter{Angle}
+% \tikzset{every loop/.style={min distance=15mm}}
+
+% ¤¤ Algoritmer ¤¤ %
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+% ¤¤ Bibliografi ¤¤ %
+%\usepackage[backend=bibtex,
+%  bibencoding=utf8
+%  ]{biblatex}
+%\addbibresource{bib/mybib.bib}
+%\DeclareNameAlias{sortname}{last-first}
+%\DeclareNameAlias{default}{last-first}
+
+% ¤¤ Python ¤¤ %
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{10}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Euler i Latex
+\newcommand{\me}{\mathrm{e}}
+\newcommand{\id}{\text{id}}
+
+
+\mdfsetup{skipabove=10pt,skipbelow=0pt}
+
+% ¤¤ Figure/Table Numbering ¤¤ %
+%\makeatletter
+%\renewcommand\@memmain@floats{%
+%  \counterwithin{figure}{section}
+%  \counterwithin{table}{section}}
+%\makeatother
+
+% ¤¤ Referencer og kilder ¤¤ %
+%\usepackage{varioref}						% Muliggør bl.a. krydshenvisninger med sidetal (\vref)
+
+%\newcommand*{\eqvref}[1]{\eqref{#1} on page~\pageref{#1}}
+
+
+
+%\usepackage[noabbrev]{cleveref}
+%\usepackage{natbib}							% Udvidelse med naturvidenskabelige citationsmodeller
+
+% ¤¤ Litteraturlisten ¤¤ %
+%\bibpunct[,]{}{}{;}{a}{,}{,}
+%Harvard henvisning (bl.a. parantestype og seperatortegn)
+%\bibliographystyle{Bibtex/harvard}			% Udseende af litteraturlisten.
+
+% ¤¤ Bibliografi ¤¤ %
+\usepackage[backend=biber, style=authoryear,
+  bibencoding=utf8]{biblatex}
+\setlength\bibitemsep{0.5\baselineskip}
+\addbibresource{Bibtex/mybib.bib}
+\DeclareNameAlias{sortname}{last-first}
+\DeclareNameAlias{default}{last-first}
+
+\usepackage{letltxmacro}\LetLtxMacro{\cite}{\parencite} %Laver \cite kommandoen om til \parencite kommandoen
+\renewcommand*{\nameyeardelim}{\addcomma\space} %Tilføjer et komma mellem author og year
+
+\AtEveryCite{%
+  \let\parentext=\parentexttrack%
+  \let\bibopenparen=\bibopenbracket%
+  \let\bibcloseparen=\bibclosebracket}
+
+\makeatother
+
+% ¤¤ Indholdsfortegnelse ¤¤ %
+\setsecnumdepth{subsection}		 			% Dybden af nummerede overkrifter (part/chapter/section/subsection)
+\maxsecnumdepth{subsection}					% Dokumentklassens graense for nummereringsdybde
+\settocdepth{subsection} 					% Dybden af indholdsfortegnelsen
+
+%\nouppercaseheads
+%\makepagestyle{analyse}
+%\makeoddhead{analyse}{Opgave 230}{}{Gruppe G3-106}
+%\makeoddfoot{analyse}{}{\thepage}{}
+
+%\nouppercaseheads
+%\makepagestyle{lama}
+%\makeoddhead{lama}{LAMA - Miniprojekt}{Gruppe G3-106}{e16g3106@math.aau.dk}
+%\makeoddfoot{lama}{}{\thepage}{}
+
+\usepackage{framed}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+% \usepackage{tikz}
+% \usetikzlibrary{matrix}
+
+
+
+%Pakke til tabeller
+% \usepackage[table,xcdraw]{xcolor}
+
+%\usepackage{appendix}
+\usepackage{listings}
+
+
+%Pæn R kode
+\definecolor{ForestGreen}{RGB}{37,137,37}
+\definecolor{RoyalBlue}{RGB}{65,105,225}
+\definecolor{Purple}{RGB}{102,0,102}
+
+\usepackage{bbm}
+%\usepackage{courier}
+\usepackage{enumitem}
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+
+
+%  \usepackage[usenames,dvipsnames]{color} 
+\lstset{ 
+    language=R,                     % the language of the code
+    literate=~{$\sim$}2,
+    %literate={\$}{{\textcolor{blue}{\$}}}1,
+    morekeywords={geom, ggplot},
+    deletekeywords={index,legend,title,show,order,scale,predict,real,model,time,kappa,cal,/,q,t,binomial,*,col,C,R,c,\$,beta,hat,\%,dt,path, residuals},
+    otherkeywords={},
+    basicstyle=\small \ttfamily, % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\tiny\color{black},  % the style that is used for the line-numbers
+    stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
+                                   % will be numbered
+    numbersep=5pt,                  % how far the line-numbers are from the code
+    backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    frame=false,                   % adds a frame around the code
+    rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+    tabsize=2,                      % sets default tabsize to 2 spaces
+    captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    mathescape = true,
+    %keywordstyle=\color{RoyalBlue},      % keyword style
+    commentstyle=\color{ForestGreen},   % comment style
+    stringstyle=\color{Purple}      % string literal style
+} 
+\newcommand{\dollar}{\mbox{\textdollar}}
+
+
+
+%%%%%%% Opsætning af hyperlink til table of contents  %%%%
+\usepackage{eso-pic}
+\usepackage{ifthen}
+\newboolean{linktoc}
+\setboolean{linktoc}{true}  %%% uncomment to show answers properly
+%\setboolean{linktoc}{false}  %%% comment to show answers properly
+
+\newcommand\AtPageUpperRight[1]{\AtPageUpperLeft{%
+ \put(\LenToUnit{\paperwidth},\LenToUnit{-0.3\paperheight}){#1}%
+ }}%
+\newcommand\AtPageLowerRight[1]{\AtPageLowerLeft{%
+ \put(\LenToUnit{\paperwidth},\LenToUnit{0.3\paperheight}){#1}%
+ }}%
+
+\ifthenelse{\boolean{linktoc}}%
+{%
+\AddToShipoutPictureBG{%
+   \AtPageUpperRight{\put(-300,207){\hyperref[toc]{\textcolor{white}{Go to ToC}}}}
+   %\AtPageLowerRight{\put(-70,-70){\hyperref[toc]{Go to ToC}}}
+    }%
+}%
+{}%
+
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{lastpage}
+
+
+
+
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{equation}{Equation}{Equations}
+\crefname{assum}{Assumption}{Assumptions}
+\crefname{mydef}{Definition}{Definitions}
+\crefname{figure}{Figure}{Figures}
+\crefname{section}{Section}{Sections}
+\crefname{chapter}{Chapter}{Chapters}
+\crefname{table}{Table}{Tables}
+\crefname{example}{Example}{Examples}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{prop}{Proposition}{Propositions}
+\crefname{appendix}{Appendix}{Appendices}
+
+
+% Kommentarer og rettelser med \todo{}, insæt figur med \missingfigure{tekst i figuren} 
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{regexpatch}
+%\tracingxpatches%for debugging
+\makeatletter
+\xpatchcmd{\@todo}{\setkeys{todonotes}{#1}}{\setkeys{todonotes}{inline,#1}}{}{}
+\makeatother
+
